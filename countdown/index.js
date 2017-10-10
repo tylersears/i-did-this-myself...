@@ -1,10 +1,11 @@
 var width, height;
 var zf, zfm, l, yearday, r, mr, f, conv, unconv, ctime;
-var drawe, modf, modf2, modf3, modf4, modf5;
+var drawe, hexu, hexv, modf, modf2, modf3, modf4, modf5;
 var id, cd, dif, date, af, at, sf, st, from, to, dur;
-var ct, tf, ntf, tf2;
+var bgcol, fgcol, ct, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current;
+var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
@@ -129,6 +130,12 @@ unconv = function(tim) {
 ctime = function() {
   return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds() + date.getMilliseconds() / 1000;
 };
+hexu = function(val) {
+  return color(parseInt(val[1] + val[2], 16), parseInt(val[3] + val[4], 16), parseInt(val[5] + val[6], 16));
+};
+hexv = function(col) {
+  return '#' + zf(red(col).toString(16)) + zf(green(col).toString(16)) + zf(blue(col).toString(16));
+};
 modf = function(tif) {
   tif = tif % 1;
   v = -log(1-tif) / log(2);
@@ -170,6 +177,8 @@ to = conv(year(), month(), day(), af[0], at[1], at[2], at[3]);
 10:45
 */
 dur = to - from;
+bgcol = color(0, 0, 0);
+fgcol = color(0, 255, 0);
 noStroke();
 draw = function() {
   try {
@@ -178,9 +187,9 @@ draw = function() {
 }
 drawe = function() {
   date = new Date();
-  background(0);
+  background(bgcol);
   textAlign(CENTER, CENTER);
-  fill(0, 255, 0);
+  fill(fgcol);
   textSize(40);
   ct = ctime();
   tf = f(1 - ((to - ctime()) / (to - from)));
@@ -256,6 +265,55 @@ Current = function() {
   dur = to - from;
   console.log('Set Start To: ' + startval.value + ' (Current Time)');
 };
+
+SetBG = function() {
+  bgcol = hexu(bgcolor.value);
+  console.log('Set Background To: ' + bgcolor.value);
+  bgcolorp.value = bgcolor.value + '';
+};
+SetFG = function() {
+  fgcol = hexu(fgcolor.value);
+  console.log('Set Foreground To: ' + fgcolor.value);
+  fgcolorp.value = fgcolor.value + '';
+};
+SetBGC = function() {
+  bgcol = hexu(bgcolorp.value);
+  console.log('Set Background To: ' + bgcolorp.value);
+  bgcolor.value = bgcolorp.value + '';
+};
+SetFGC = function() {
+  fgcol = hexu(fgcolorp.value);
+  console.log('Set Foreground To: ' + fgcolorp.value);
+  fgcolor.value = fgcolorp.value + '';
+};
+ResetBG = function() {
+  bgcol = color(0, 0, 0);
+  bgcolor.value = hexv(bgcol);
+  bgcolorp.value = bgcolor.value + '';
+  console.log('Reset Background To: ' + bgcolor.value);
+};
+ResetFG = function() {
+  fgcol = color(0, 255, 0);
+  fgcolor.value = hexv(fgcol);
+  fgcolorp.value = fgcolor.value + '';
+  console.log('Reset Foreground To: ' + fgcolor.value);
+};
+SetCol = function() {
+  bgcol = hexu(bgcolor.value);
+  fgcol = hexu(fgcolor.value);
+  bgcolorp.value = bgcolor.value + '';
+  fgcolorp.value = fgcolor.value + '';
+  console.log('Set Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
+};
+ResetCol = function() {
+  bgcol = color(0, 0, 0);
+  fgcol = color(0, 255, 0);
+  bgcolor.value = hexv(bgcol);
+  fgcolor.value = hexv(fgcol);
+  bgcolorp.value = bgcolor.value + '';
+  fgcolorp.value = fgcolor.value + '';
+  console.log('Reset Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
+};
 Stop = function() {
   drawe = function () {}
   console.log('Stopped Drawing')
@@ -286,3 +344,5 @@ delete dur;*/
 };
 var canvas = document.getElementById('mycanvas'); 
 var processingInstance = new Processing(canvas, sketchProc);
+bgcolorp.addEventListener('change', SetBGC, false);
+fgcolorp.addEventListener('change', SetFGC, false);
