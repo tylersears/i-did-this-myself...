@@ -5,7 +5,7 @@ var date, from, fd, td, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, Year, Century, Eclipse;
-var SetBG, SetFG, ResetBG, ResetFG, SetCol, ResetCol;
+var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
@@ -192,11 +192,11 @@ drawe = function() {
   text(date.toISOString(), 140, 200);
   text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
   text('Degrees:', 10, 220);
-  text(nr(tf * 90), 140, 220);
+  text(nr(tf1 * 90), 140, 220);
   text('Tangent:', 10, 240);
-  text(nr(tan(radians(tf1 * 180 - 90))), 140, 240);
+  text(nr(tan(radians(tf1 * 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
-  text(nr(Math.atanh(tf1 * 2 - 1)), 140, 260);
+  text(nr(Math.atanh(radians(tf1 * 90))), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
@@ -274,11 +274,7 @@ Year = function() {
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Century = function() {
-  from = new Date(floor(year()/100)*100, 0, 1, 0, 0, 0, 0);
-  to = new Date(ceil(year()/100)*100, 0, 1, 0, 0, 0, 0);
   dur = to.getTime() - from.getTime();
-  startval.value = from.toISOString();
-  endval.value = to.toISOString();
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Eclipse = function() {
@@ -290,24 +286,40 @@ Eclipse = function() {
 SetBG = function() {
   bgcol = hexu(bgcolor.value);
   console.log('Set Background To: ' + bgcolor.value);
+  bgcolorp.value = bgcolor.value + '';
 };
 SetFG = function() {
   fgcol = hexu(fgcolor.value);
   console.log('Set Foreground To: ' + fgcolor.value);
+  fgcolorp.value = fgcolor.value + '';
+};
+SetBGC = function() {
+  bgcol = hexu(bgcolorp.value);
+  console.log('Set Background To: ' + bgcolorp.value);
+  bgcolor.value = bgcolorp.value + '';
+};
+SetFGC = function() {
+  fgcol = hexu(fgcolorp.value);
+  console.log('Set Foreground To: ' + fgcolorp.value);
+  fgcolor.value = fgcolorp.value + '';
 };
 ResetBG = function() {
   bgcol = color(0, 0, 0);
   bgcolor.value = hexv(bgcol);
+  bgcolorp.value = bgcolor.value + '';
   console.log('Reset Background To: ' + bgcolor.value);
 };
 ResetFG = function() {
   fgcol = color(0, 255, 0);
   fgcolor.value = hexv(fgcol);
+  fgcolorp.value = fgcolor.value + '';
   console.log('Reset Foreground To: ' + fgcolor.value);
 };
 SetCol = function() {
   bgcol = hexu(bgcolor.value);
   fgcol = hexu(fgcolor.value);
+  bgcolorp.value = bgcolor.value + '';
+  fgcolorp.value = fgcolor.value + '';
   console.log('Set Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
 };
 ResetCol = function() {
@@ -315,6 +327,8 @@ ResetCol = function() {
   fgcol = color(0, 255, 0);
   bgcolor.value = hexv(bgcol);
   fgcolor.value = hexv(fgcol);
+  bgcolorp.value = bgcolor.value + '';
+  fgcolorp.value = fgcolor.value + '';
   console.log('Reset Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
 };
 Stop = function() {
@@ -332,3 +346,5 @@ Button = function() {};
 };
 var canvas = document.getElementById('mycanvas'); 
 var processingInstance = new Processing(canvas, sketchProc);
+bgcolorp.addEventListener('change', SetBGC, false);
+fgcolorp.addEventListener('change', SetFGC, false);
