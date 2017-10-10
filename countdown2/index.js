@@ -274,7 +274,11 @@ Year = function() {
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Century = function() {
+  from = new Date(floor(year()/100)*100, 0, 1, 0, 0, 0, 0);
+  to = new Date(ceil(year()/100)*100, 0, 1, 0, 0, 0, 0);
   dur = to.getTime() - from.getTime();
+  startval.value = from.toISOString();
+  endval.value = to.toISOString();
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Eclipse = function() {
