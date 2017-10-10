@@ -205,6 +205,10 @@ drawe = function() {
   text('To:\n' + unconv(to)[1], width * 0.5, 210);
   text('Duration:\n' + unconv(dur)[1], width * 0.16, 270);
   text('Current Time:\n' + unconv(ctime())[1], width * 0.5, 270);
+  fill(lerpColor(bgcol, fgcol, 0.06));
+  textSize(15);
+  text('Please press\nthe button\nlabled Button!', width * 0.5, 150);
+  fill(fgcol);
   if (tf >= 0) {
       rect(0, 300, floor(tf * width), 30);
   } else {
