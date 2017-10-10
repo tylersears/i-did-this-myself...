@@ -155,11 +155,8 @@ modf5 = function(tif) {
   return modf4(v);
 };
 date = new Date();
-id = new Date(2017, 10, 03, 0, 0, 0);
-cd = new Date(year(), month(), day(), 0, 0, 0);
-dif = Math.round(Math.abs((id.getTime() - cd.getTime())/86400000));
 af = [8, 0, 0, 0];
-at = [14, 23, 60-dif*3, 000];
+at = [14, 23, sd, 000];
 while (at[2] < 0) {at[1]-=1;at[2]+=60;}
 while (at[1] < 0) {at[0]-=1;at[1]+=60;}
 if (at[2] != floor(at[2])) {at[3] = (at[2] - floor(at[2])) * 1000; at[2] = floor(at[2]);}
