@@ -65,7 +65,7 @@ perc = function(val) {
 };
 nr = function(val) {
   if (isNaN(val)) {
-    return '%';
+    return '';
   }
   if (val < 0) {
     return '-' + nr(-val);
@@ -194,9 +194,9 @@ drawe = function() {
   text('Degrees:', 10, 220);
   text(nr(tf * 90), 140, 220);
   text('Tangent:', 10, 240);
-  text(nr(tan(radians(tf * 90))), 140, 240);
+  text(nr(tan(radians(tf1 * 180 - 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
-  text(nr(Math.atanh(radians(tf * 90))), 140, 260);
+  text(nr(Math.atanh(tf1 * 2 - 1)), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
