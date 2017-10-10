@@ -191,10 +191,12 @@ drawe = function() {
   text('Current Time:', 10, 200);
   text(date.toISOString(), 140, 200);
   text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
-  text('Degrees:', 10, 240);
-  text(nr(tf * 90), 140, 240);
-  text('Tangent:', 10, 260);
-  text(nr(tan(radians(tf * 90))), 140, 260);
+  text('Degrees:', 10, 220);
+  text(nr(tf * 90), 140, 220);
+  text('Tangent:', 10, 240);
+  text(nr(tan(radians(tf * 90))), 140, 240);
+  text('Hy. Arctan:', 10, 260);
+  text(nr(Math.atanh(radians(tf * 90))), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
@@ -207,8 +209,9 @@ drawe = function() {
   text(floor(tf * width) + '/' + width, 120, 327);
   text(floor(tf2 * width) + '/' + width, 120, 377);
   text(floor(tf * width) * width + floor(tf2 * width) + '/' + sq(width), 220, 377);
-  fill(lerpColor(bgcol, fgcol, 0.05));
-  text('Please press the button labled Button!', 10, 220);
+  fill(lerpColor(bgcol, fgcol, 0.06));
+  textSize(15);
+  text('Please press the button labled Button!', 10, 280);
 };
 SetStart = function() {
   try {
