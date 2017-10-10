@@ -1,7 +1,7 @@
 var col, width, height;
 var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
-var date, id, cd, dif, from, sd, fd, td, from, to, dur;
+var date, from, fd, td, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, Year, Century, Eclipse;
@@ -151,10 +151,6 @@ modf6 = function(tif) {
   return modf5(v);
 };
 date = new Date();
-id = new Date(2017, 10, 03, 0, 0, 0);
-cd = new Date(year(), month(), day(), 0, 0, 0);
-dif = Math.round(Math.abs((id.getTime() - cd.getTime())/86400000));
-sd = 60-dif*3;
 fd = [year(), month()-1, day(), 8, 0, 0, 0];
 td = [year(), month()-1, day(), 14, 23, sd, (sd - floor(sd)) * 1000];
 from = new Date(fd[0], fd[1], fd[2], fd[3], fd[4], fd[5], fd[6]);
