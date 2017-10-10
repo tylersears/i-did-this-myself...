@@ -194,9 +194,9 @@ drawe = function() {
   text('Degrees:', 10, 220);
   text(nr(tf1 * 90), 140, 220);
   text('Tangent:', 10, 240);
-  text(nr(tan(radians(tf1 * 90))), 140, 240);
+  text(nr(tan(radians(tf1 * 180 - 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
-  text(nr(Math.atanh(radians(tf1 * 90))), 140, 260);
+  text(nr(tf1 * 2 - 1), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
