@@ -86,7 +86,7 @@ nr = function(val) {
   } else {
     return floor(val / 1000000) + nr((val / 1000000) % 1);
   }
-  return val[0] + val[1] + '.' + val[2] + val[3] + val[4] + val[5];
+  return '.' + val[0] + val[1] + val[2] + val[3] + val[4] + val[5];
 };
 mr = function(v, df) {
   if (v < 0) {
@@ -195,8 +195,10 @@ drawe = function() {
   text('Current Time:', 10, 200);
   text(date.toISOString(), 140, 200);
   text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
-  text('Tangent:', 10, 240);
-  text(nr(tan(radians(tf * 90))), 140, 240);
+  text('Degrees:', 10, 240);
+  text(nr(tf * 90), 140, 240);
+  text('Tangent:', 10, 260);
+  text(nr(tan(radians(tf * 90))), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
