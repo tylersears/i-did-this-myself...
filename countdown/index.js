@@ -159,7 +159,7 @@ id = new Date(2017, 10, 03, 0, 0, 0);
 cd = new Date(year(), month(), day(), 0, 0, 0);
 dif = Math.round(Math.abs((id.getTime() - cd.getTime())/86400000));
 af = [8, 0, 0, 0];
-at = [14, 23, 57-dif*3.5, 500];
+at = [14, 23, 60-dif*3, 000];
 while (at[2] < 0) {at[1]-=1;at[2]+=60;}
 while (at[1] < 0) {at[0]-=1;at[1]+=60;}
 if (at[2] != floor(at[2])) {at[3] = (at[2] - floor(at[2])) * 1000; at[2] = floor(at[2]);}
@@ -194,7 +194,7 @@ drawe = function() {
   text(r(1 - ((to - ctime()) / (to - from))), width / 2, 100);
   textSize(25);
   text('Time Passed:\n' + unconv(ct - from)[1], width * 0.16, 150);
-  text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf), width * 0.83, 210);
+  text('Logarythm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf), width * 0.83, 210);
   text('From:\n' + unconv(from)[1], width * 0.16, 210);
   text('To:\n' + unconv(to)[1], width * 0.5, 210);
   text('Duration:\n' + unconv(dur)[1], width * 0.16, 270);
@@ -262,16 +262,16 @@ Current = function() {
 Stop = function() {
   drawe = function () {}
   console.log('Stopped Drawing')
-}
+};
 Freeze = function() {
   while (1) {}
-}
+};
 Button = function() {
   /*println('button');
   for (var i=0;i<200;i++) {
     println(i);
   }*/
-}
+};
 /*
 delete canvas;
 delete id;
@@ -287,5 +287,5 @@ delete dur;*/
 //end processingjs
   }
 };
-var canvas = document.getElementById("mycanvas"); 
+var canvas = document.getElementById('mycanvas'); 
 var processingInstance = new Processing(canvas, sketchProc);
