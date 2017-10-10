@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Lengths</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <pre class = 'mono'>Space Lengths:
+         No Space: <span class = 'spac'>][</span>
+ Zero Width Space: <span class = 'spac'>]&#8203;[</span>
+       Hair Space: <span class = 'spac'>]&#8202;[</span>
+     1/6 Em Space: <span class = 'spac'>]&#8198;[</span>
+       Thin Space: <span class = 'spac'>]&#8201;[</span>
+     1/4 Em Space: <span class = 'spac'>]&#8197;[</span>
+    Regular Space: <span class = 'spac'>]&nbsp;[</span>
+     1/2 Em Space: <span class = 'spac'>]&#8196;[</span>
+         En Space: <span class = 'spac'>]&#8194;[</span>
+     Figure Space: <span class = 'spac'>]&#8199;[</span>
+         Em Space: <span class = 'spac'>]&#8195;[</span>
+
+Spaces needed to make a certain length:
+         Em Space: <span class = 'spac'>]&#8195;&#8195;[ (2)</span>
+         En Space: <span class = 'spac'>]&#8194;&#8194;&#8194;&#8194;[ (4)</span>
+     1/2 Em Space: <span class = 'spac'>]&#8196;&#8196;&#8196;&#8196;&#8196;&#8196;&#8202;&#8202;[ (6 + 2 hairsp)</span>
+    Regular Space: <span class = 'spac'>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (8)</span>
+     1/4 Em Space: <span class = 'spac'>]&#8197;&#8197;&#8197;&#8197;&#8197;&#8197;&#8197;&#8197;[ (8)</span>
+       Thin Space: <span class = 'spac'>]&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8202;&#8202;[ (10 + 2 hairsp)</span>
+     1/6 Em Space: <span class = 'spac'>]&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8198;&#8202;&#8202;[ (10 + 2 hairsp)</span>
+       Hair Space: <span class = 'spac'>]&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;&#8202;[ (32)</span>
+ Zero Width Space: <span id = 'zw' class = 'spac'>][ (inf)</span></pre>
+    <p>Unbackspaceable<span id = 'ws'>e</span>e</p>
+    <p>This is a soft hy&shy;phen&shy;ated piece of text that has a word "ono&shy;mato&shy;poeia" in it that will get split, and pro&shy;ba&shy;bly "pneu&shy;mono&shy;ultra&shy;micro&shy;scopic&shy;sili&shy;co&shy;vol&shy;cano&shy;coni&shy;osis" will get split as well.</p>
+  </body>
+</html>
