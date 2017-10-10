@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown 2</title>
+    <link href='index.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <p class = 'mono'>Time Format:</p>
+    <p class = 'mono'><span class = 'spac'>&#8202;&#8202;</span>YYYY-MM-DDTHH:MM:SS.LLLZ</p>
+    <input class = 'mono' type = 'datetime' id = 'startval' name = 'startval' style='width: 14.5em;'>
+    <button onclick = 'SetStart()'>Set Start</button>
+    <button onclick = 'ResetStart()'>Reset Start</button><br>
+    <input class = 'mono' type = 'datetime' id = 'endval' name = 'endval' style='width: 14.5em;'>
+    <button onclick = 'SetEnd()'>Set End</button>
+    <button onclick = 'ResetEnd()'>Reset End</button><br>
+    <button onclick = 'Setf()'>Set</button>
+    <button onclick = 'Reset()'>Reset</button>
+    <button onclick = 'Current()'>Current</button><br>
+    <p class = 'mono' align='center'>
+      <canvas id='mycanvas'>Your browser does not support canvases. :(</canvas> 
+    </p>
+    <button onclick = 'Year()'>Year</button>
+    <button onclick = 'Century()'>Century</button>
+    <button onclick = 'Eclipse()'>Next Eclipse</button>
+    <button onclick = 'Stop()'>Stop</button>
+    <button onclick = 'Freeze()'>Freeze</button>
+    <span class = 'mono'>Warning: Will freeze tab!</span>
+    <button onclick = 'Button()'>Button</button><br>
+    <input class = 'mono' type = 'text' id = 'bgcolor' name = 'bgcolor' style='width: 14.5em;'>
+    <button onclick = 'SetBG()'>Set Background</button>
+    <button onclick = 'ResetBG()'>Reset Background</button><br>
+    <input class = 'mono' type = 'text' id = 'fgcolor' name = 'fgcolor' style='width: 14.5em;'>
+    <button onclick = 'SetFG()'>Set Foreground</button>
+    <button onclick = 'ResetFG()'>Reset Foreground</button><br>
+    <button onclick = 'SetCol()'>Set Color</button>
+    <button onclick = 'ResetCol()'>Reset Color</button><br>
+    <script src='https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js'></script>
+    <script src='index.js'></script>
+    <script>
+      Reset();
+      ResetCol();
+    </script>
+  </body>
+</html>
