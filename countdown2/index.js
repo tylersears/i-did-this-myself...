@@ -179,7 +179,7 @@ drawe = function() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(40);
-  text('Time Left:', width / 2, 20);
+  text('Time Left:e', width / 2, 20);
   text(dateg(tl), width / 2, 60);
   text(perc(tf), width / 2, 100);
   textAlign(LEFT, TOP);
