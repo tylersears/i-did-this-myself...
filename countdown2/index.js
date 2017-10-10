@@ -278,7 +278,7 @@ Century = function() {
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Eclipse = function() {
-  to = new Date('2024-04-08T17:59:17.000Z');
+  to = new Date(nexteclipse);
   dur = to.getTime() - from.getTime();
   endval.value = to.toISOString();
   console.log('Set End To: ' + to.toISOString());
