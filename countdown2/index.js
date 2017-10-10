@@ -1,5 +1,5 @@
 var col, width, height;
-var zf, zfm, datearr, datestr, dateg, perc, mr, hexu, hexv;
+var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
 var date, id, cd, dif, from, sd, fd, td, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
@@ -62,6 +62,31 @@ perc = function(val) {
     return floor(val / 1000000) + perc((val / 1000000) % 1);
   }
   return val[0] + val[1] + '.' + val[2] + val[3] + val[4] + val[5] + '%';
+};
+nr = function(val) {
+  if (isNaN(val)) {
+    return '%';
+  }
+  if (val < 0) {
+    return '-' + nr(-val);
+  }
+  val *= 1000000;
+  if (val < 10) {
+    val = '00000' + val;
+  } else if (val < 100) {
+    val = '0000' + val;
+  } else if (val < 1000) {
+    val = '000' + val;
+  } else if (val < 10000) {
+    val = '00' + val;
+  } else if (val < 100000) {
+    val = '0' + val;
+  } else if (val < 1000000) {
+    val = '' + val;
+  } else {
+    return floor(val / 1000000) + nr((val / 1000000) % 1);
+  }
+  return val[0] + val[1] + '.' + val[2] + val[3] + val[4] + val[5];
 };
 mr = function(v, df) {
   if (v < 0) {
@@ -129,7 +154,7 @@ date = new Date();
 id = new Date(2017, 10, 03, 0, 0, 0);
 cd = new Date(year(), month(), day(), 0, 0, 0);
 dif = Math.round(Math.abs((id.getTime() - cd.getTime())/86400000));
-sd = 58-dif*3;
+sd = 60-dif*3;
 fd = [year(), month()-1, day(), 8, 0, 0, 0];
 td = [year(), month()-1, day(), 14, 23, sd, (sd - floor(sd)) * 1000];
 from = new Date(fd[0], fd[1], fd[2], fd[3], fd[4], fd[5], fd[6]);
@@ -170,6 +195,8 @@ drawe = function() {
   text('Current Time:', 10, 200);
   text(date.toISOString(), 140, 200);
   text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
+  text('Tangent:', 10, 240);
+  text(nr(tan(radians(tf * 90))), 140, 240);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
