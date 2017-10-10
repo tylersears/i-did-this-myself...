@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown</title>
+    <link href='index.css' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <p class = 'mono'>Time Format:</p>
+    <p class = 'mono'><span class = 'spac'>&#8202;&#8202;</span>HH:MM:SS.LLL</p>
+    <input class = 'mono' type = 'datetime' id = 'startval' name = 'startval' style='width: 8em;'>
+    <button onclick = 'SetStart()'>Set Start</button>
+    <button onclick = 'ResetStart()'>Reset Start</button><br>
+    <input class = 'mono' type = 'datetime' id = 'endval' name = 'endval' style='width: 8em;'>
+    <button onclick = 'SetEnd()'>Set End</button>
+    <button onclick = 'ResetEnd()'>Reset End</button><br>
+    <button onclick = 'Setf()'>Set</button>
+    <button onclick = 'Reset()'>Reset</button>
+    <button onclick = 'Current()'>Current</button>
+    <button onclick = 'Stop()'>Stop</button>
+    <button onclick = 'Button()'>Button</button><br>
+    <p class = 'mono' align='center'>
+      <canvas id='mycanvas'>Your browser does not support canvases. :(</canvas> 
+    </p>
+    <button onclick = 'Freeze()'>Freeze</button>
+    <span class = 'mono'>Warning: Will freeze tab!</span>
+    <script src='https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js'></script>
+    <script src='index.js'></script>
+    <script>
+      Reset();
+    </script>
+  </body>
+</html>
