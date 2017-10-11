@@ -168,6 +168,7 @@ drawe = function() {
   tl = to.getTime() - date.getTime();
   tf = 1 - (tl / dur);
   tf1 = (1 - (tl / dur)) % 1;
+  tfm = tf - floor(tf);
   ntf = 1 - (tl / dur);
   tf2 = (tf * width - floor(tf * width));
   background(bgcol);
@@ -194,9 +195,9 @@ drawe = function() {
   text('Degrees:', 10, 220);
   text(nr(tf1 * 180 - 90), 140, 220);
   text('Tangent:', 10, 240);
-  text(nr(tan(radians(tf1 * 180 - 90))), 140, 240);
+  text(nr(tan(radians(tfm * 180 - 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
-  text(nr(Math.atanh(tf1 * 2 - 1)), 140, 260);
+  text(nr(Math.atanh(tfm * 2 - 1)), 140, 260);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
