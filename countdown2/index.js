@@ -192,7 +192,7 @@ drawe = function() {
   text(date.toISOString(), 140, 200);
   text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
   text('Degrees:', 10, 220);
-  text(nr(tf1 * 90), 140, 220);
+  text(nr(tf1 * 180 - 90), 140, 220);
   text('Tangent:', 10, 240);
   text(nr(tan(radians(tf1 * 180 - 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
