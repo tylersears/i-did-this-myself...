@@ -1,10 +1,10 @@
 var col, width, height;
 var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
-var date, from, fd, td, from, to, dur;
+var date, dl, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
-var Setf, Reset, Current, Year, Century, Eclipse;
+var Setf, Reset, Current, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var sketchProc = function(processingInstance) {
@@ -151,10 +151,8 @@ modf6 = function(tif) {
   return modf5(v);
 };
 date = new Date();
-fd = [year(), month()-1, day(), 8, 0, 0, 0];
-td = [year(), month()-1, day(), 14, 23, sd, (sd - floor(sd)) * 1000];
-from = new Date(fd[0], fd[1], fd[2], fd[3], fd[4], fd[5], fd[6]);
-to = new Date(td[0], td[1], td[2], td[3], td[4], td[5], td[6]);
+from = new Date(dl.sf);
+to = new Date(dl.st);
 dur = to.getTime() - from.getTime();
 bgcol = color(0, 0, 0);
 fgcol = color(0, 255, 0);
@@ -223,12 +221,14 @@ SetStart = function() {
   }
   dur = to.getTime() - from.getTime();
   console.log('Set Start To: ' + from.toISOString());
+  RevSelect();
 };
 ResetStart = function() {
-  from = new Date(fd[0], fd[1], fd[2], fd[3], fd[4], fd[5], fd[6]);
+  from = new Date(dl.sf);
   dur = to.getTime() - from.getTime();
   startval.value = from.toISOString();
   console.log('Reset Start To: ' + from.toISOString());
+  RevSelect();
 };
 SetEnd = function() {
   try {
@@ -239,26 +239,30 @@ SetEnd = function() {
   }
   dur = to.getTime() - from.getTime();
   console.log('Set End To: ' + to.toISOString());
+  RevSelect();
 };
 ResetEnd = function() {
   to = new Date(td[0], td[1], td[2], td[3], td[4], td[5], td[6]);
   dur = to.getTime() - from.getTime();
   endval.value = to.toISOString();
   console.log('Reset End To: ' + to.toISOString());
+  RevSelect();
 };
 Setf = function() {
   from = new Date(startval.value);
   to = new Date(endval.value);
   dur = to.getTime() - from.getTime();
   console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
+  RevSelect();
 };
 Reset = function() {
-  from = new Date(fd[0], fd[1], fd[2], fd[3], fd[4], fd[5], fd[6]);
-  to = new Date(td[0], td[1], td[2], td[3], td[4], td[5], td[6]);
+  from = new Date(dl.sf);
+  to = new Date(dl.st);
   startval.value = from.toISOString();
   endval.value = to.toISOString();
   dur = to - from;
   console.log('Reset Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
+  RevSelect();
 };
 Current = function() {
   startval.value = date.toISOString();
@@ -266,23 +270,96 @@ Current = function() {
   dur = to.getTime() - from.getTime();
   console.log('Set Start To: ' + from.toISOString());
 };
-Year = function() {
-  from = new Date(year(), 0, 1, 0, 0, 0, 0);
-  to = new Date(year()+1, 0, 1, 0, 0, 0, 0);
-  dur = to.getTime() - from.getTime();
-  startval.value = from.toISOString();
-  endval.value = to.toISOString();
-  console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
+RevSelect = function() {
+  if ((from.toISOString() == dl.sf.toISOString()) && (to.toISOString() == dl.st.toISOString())) {
+    opts.value = 'school';
+  } else if ((from.toISOString() == dl.df.toISOString()) && (to.toISOString() == dl.dt.toISOString())) {
+    opts.value = 'day';
+  } else if ((from.toISOString() == dl.wf.toISOString()) && (to.toISOString() == dl.wt.toISOString())) {
+    opts.value = 'week';
+  } else if ((from.toISOString() == dl.mf.toISOString()) && (to.toISOString() == dl.mt.toISOString())) {
+    opts.value = 'month';
+  } else if ((from.toISOString() == dl.yf.toISOString()) && (to.toISOString() == dl.yt.toISOString())) {
+    opts.value = 'year';
+  } else if ((from.toISOString() == dl.cf.toISOString()) && (to.toISOString() == dl.ct.toISOString())) {
+    opts.value = 'century';
+  } else if ((from.toISOString() == dl.mlf.toISOString()) && (to.toISOString() == dl.mlt.toISOString())) {
+    opts.value = 'millennium';
+  } else if (to.toISOString() == dl.net.toISOString()) {
+    opts.value = 'eclipse';
+  } else {
+    opts.value = 'custom';
+  }
+  console.log('Set opts to: ' + opts.value)
 };
-Century = function() {
-  dur = to.getTime() - from.getTime();
-  console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
-};
-Eclipse = function() {
-  to = new Date(nexteclipse);
-  dur = to.getTime() - from.getTime();
-  endval.value = to.toISOString();
-  console.log('Set End To: ' + to.toISOString());
+UpdateSelect = function() {
+  switch (opts.value) {
+    case 'school':
+      from = new Date(dl.sf);
+      to = new Date(dl.st);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (School)');
+      break;
+    case 'day':
+      from = new Date(dl.df);
+      to = new Date(dl.dt);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Day)');
+      break;
+    case 'week':
+      from = new Date(dl.wf);
+      to = new Date(dl.wt);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Week)');
+      break;
+    case 'month':
+      from = new Date(dl.mf);
+      to = new Date(dl.mt);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Month)');
+      break;
+    case 'year':
+      from = new Date(dl.yf);
+      to = new Date(dl.yt);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Year)');
+      break;
+    case 'century':
+      from = new Date(dl.cf);
+      to = new Date(dl.ct);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Century)');
+      break;
+    case 'millennium':
+      from = new Date(dl.mlf);
+      to = new Date(dl.mlt);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Millenium)');
+      break;
+    case 'eclipse':
+      to = new Date(dl.net);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set End To: ' + to.toISOString() + ' (Next Eclipse)');
+      break;
+    case 'custom':
+      break;
+  };
 };
 SetBG = function() {
   bgcol = hexu(bgcolor.value);
