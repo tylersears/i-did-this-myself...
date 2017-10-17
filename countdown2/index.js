@@ -161,6 +161,8 @@ dl = {
   'mt': new Date(date.getFullYear(), date.getMonth()+1, 1, 0, 0, 0, 0),
   'yf': new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0),
   'yt': new Date(date.getFullYear()+1, 1, 1, 0, 0, 0, 0),
+  'def': new Date(floor(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
+  'det': new Date(ceil(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
   'cf': new Date(floor(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
   'ct': new Date(ceil(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
   'mlf': new Date(floor(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
@@ -297,6 +299,8 @@ RevSelect = function() {
     opts.value = 'month';
   } else if ((from.toISOString() == dl.yf.toISOString()) && (to.toISOString() == dl.yt.toISOString())) {
     opts.value = 'year';
+  } else if ((from.toISOString() == dl.def.toISOString()) && (to.toISOString() == dl.det.toISOString())) {
+    opts.value = 'decade';
   } else if ((from.toISOString() == dl.cf.toISOString()) && (to.toISOString() == dl.ct.toISOString())) {
     opts.value = 'century';
   } else if ((from.toISOString() == dl.mlf.toISOString()) && (to.toISOString() == dl.mlt.toISOString())) {
@@ -349,6 +353,14 @@ UpdateSelect = function() {
       endval.value = to.toISOString();
       dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Year)');
+      break;
+    case 'decade':
+      from = new Date(dl.def);
+      to = new Date(dl.det);
+      startval.value = from.toISOString();
+      endval.value = to.toISOString();
+      dur = to - from;
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Decade)');
       break;
     case 'century':
       from = new Date(dl.cf);
