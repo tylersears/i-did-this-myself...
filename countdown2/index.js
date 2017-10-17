@@ -1,7 +1,7 @@
 var col, width, height;
 var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
-var date, dl, from, to, dur;
+var date, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, RevSelect, UpdateSelect;
