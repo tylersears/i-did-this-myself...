@@ -1,7 +1,7 @@
-var col, width, height;
+var width, height;
 var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
-var date, from, to, dur;
+var date, dl, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, RevSelect, UpdateSelect;
@@ -10,7 +10,6 @@ var Stop, Freeze, Button;
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
 //begin processingjs
-col = color;
 width = 600;
 height = 400;
 size(width, height, P2D);
@@ -151,6 +150,23 @@ modf6 = function(tif) {
   return modf5(v);
 };
 date = new Date();
+dl = {
+  'sf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
+  'st': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
+  'df': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0),
+  'dt': new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0, 0),
+  'wf': new Date(),
+  'wt': new Date(),
+  'mf': new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0),
+  'mt': new Date(date.getFullYear(), date.getMonth()+1, 1, 0, 0, 0, 0),
+  'yf': new Date(date.getFullYear(), 1, 1, 0, 0, 0, 0),
+  'yt': new Date(date.getFullYear()+1, 1, 1, 0, 0, 0, 0),
+  'cf': new Date(floor(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
+  'ct': new Date(ceil(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
+  'mlf': new Date(floor(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
+  'mlt': new Date(ceil(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
+  'net': new Date('2024-04-08T17:59:17.000Z')
+};
 from = new Date(dl.sf);
 to = new Date(dl.st);
 dur = to.getTime() - from.getTime();
