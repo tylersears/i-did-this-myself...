@@ -7,6 +7,19 @@ var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
+var SwitchTab = function(event, tabv) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabv).style.display = "block";
+  event.currentTarget.className += " active";
+};
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
 //begin processingjs
