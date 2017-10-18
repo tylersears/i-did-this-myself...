@@ -153,6 +153,20 @@ date = new Date();
 dl = {
   'sf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
   'st': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
+  's1f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
+  's1t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
+  's3f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
+  's3t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
+  's4f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
+  's4t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
+  's5f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
+  's5t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
+  's6f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
+  's6t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
+  's7f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
+  's7t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
+  's8f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
+  's8t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
   'df': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0),
   'dt': new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0, 0),
   'wf': new Date(),
@@ -160,7 +174,7 @@ dl = {
   'mf': new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0),
   'mt': new Date(date.getFullYear(), date.getMonth()+1, 1, 0, 0, 0, 0),
   'yf': new Date(date.getFullYear(), 0, 1, 0, 0, 0, 0),
-  'yt': new Date(date.getFullYear()+1, 0, 1, 0, 0, 0, 0),
+  'yt': new Date(date.getFullYear()+1, 0, 1, 0, 0, 04, 0),
   'def': new Date(floor(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
   'det': new Date(ceil(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
   'cf': new Date(floor(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
@@ -291,6 +305,20 @@ Current = function() {
 RevSelect = function() {
   if ((from.toISOString() == dl.sf.toISOString()) && (to.toISOString() == dl.st.toISOString())) {
     opts.value = 'school';
+  } else if ((from.toISOString() == dl.s1f.toISOString()) && (to.toISOString() == dl.s1t.toISOString())) {
+    opts.value = '1st';
+  } else if ((from.toISOString() == dl.s3f.toISOString()) && (to.toISOString() == dl.s3t.toISOString())) {
+    opts.value = '3rd';
+  } else if ((from.toISOString() == dl.s4f.toISOString()) && (to.toISOString() == dl.s4t.toISOString())) {
+    opts.value = '4th';
+  } else if ((from.toISOString() == dl.s5f.toISOString()) && (to.toISOString() == dl.s5t.toISOString())) {
+    opts.value = '5th';
+  } else if ((from.toISOString() == dl.s6f.toISOString()) && (to.toISOString() == dl.s6t.toISOString())) {
+    opts.value = '6th';
+  } else if ((from.toISOString() == dl.s7f.toISOString()) && (to.toISOString() == dl.s7t.toISOString())) {
+    opts.value = '7th';
+  } else if ((from.toISOString() == dl.s8f.toISOString()) && (to.toISOString() == dl.s8t.toISOString())) {
+    opts.value = '8th';
   } else if ((from.toISOString() == dl.df.toISOString()) && (to.toISOString() == dl.dt.toISOString())) {
     opts.value = 'day';
   } else if ((from.toISOString() == dl.wf.toISOString()) && (to.toISOString() == dl.wt.toISOString())) {
@@ -317,77 +345,88 @@ UpdateSelect = function() {
     case 'school':
       from = new Date(dl.sf);
       to = new Date(dl.st);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (School)');
+      break;
+    case '1st':
+      from = new Date(dl.s1f);
+      to = new Date(dl.s1t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (1st Block)');
+      break;
+    case '3rd':
+      from = new Date(dl.s3f);
+      to = new Date(dl.s3t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (2nd Block Part 1)');
+      break;
+    case '4th':
+      from = new Date(dl.s4f);
+      to = new Date(dl.s4t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Related Arts)');
+      break;
+    case '5th':
+      from = new Date(dl.s5f);
+      to = new Date(dl.s5t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Lunch)');
+      break;
+    case '6th':
+      from = new Date(dl.s6f);
+      to = new Date(dl.s6t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (2nd Block Part 2)');
+      break;
+    case '7th':
+      from = new Date(dl.s7f);
+      to = new Date(dl.s7t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Flex)');
+      break;
+    case '8th':
+      from = new Date(dl.s8f);
+      to = new Date(dl.s8t);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (3rd Block)');
       break;
     case 'day':
       from = new Date(dl.df);
       to = new Date(dl.dt);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Day)');
       break;
     case 'week':
       from = new Date(dl.wf);
       to = new Date(dl.wt);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Week)');
       break;
     case 'month':
       from = new Date(dl.mf);
       to = new Date(dl.mt);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Month)');
       break;
     case 'year':
       from = new Date(dl.yf);
       to = new Date(dl.yt);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Year)');
       break;
     case 'decade':
       from = new Date(dl.def);
       to = new Date(dl.det);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Decade)');
       break;
     case 'century':
       from = new Date(dl.cf);
       to = new Date(dl.ct);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Century)');
       break;
     case 'millennium':
       from = new Date(dl.mlf);
       to = new Date(dl.mlt);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Millenium)');
       break;
     case 'eclipse':
       to = new Date(dl.net);
-      startval.value = from.toISOString();
-      endval.value = to.toISOString();
-      dur = to - from;
       console.log('Set End To: ' + to.toISOString() + ' (Next Eclipse)');
       break;
     case 'custom':
       break;
   };
+  startval.value = from.toISOString();
+  endval.value = to.toISOString();
+  dur = to - from;
 };
 SetBG = function() {
   bgcol = hexu(bgcolor.value);
