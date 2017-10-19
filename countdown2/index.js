@@ -462,34 +462,40 @@ UpdateSelect = function() {
 };
 SetBG = function() {
   bgcol = hexu(bgcolor.value);
-  console.log('Set Background To: ' + bgcolor.value);
   bgcolorp.value = bgcolor.value + '';
+  simple.style.backgroundColor = bgcolor.value + '';
+  console.log('Set Background To: ' + bgcolor.value);
 };
 SetFG = function() {
   fgcol = hexu(fgcolor.value);
-  console.log('Set Foreground To: ' + fgcolor.value);
   fgcolorp.value = fgcolor.value + '';
+  simple.style.color = fgcolor.value + '';
+  console.log('Set Foreground To: ' + fgcolor.value);
 };
 SetBGC = function() {
   bgcol = hexu(bgcolorp.value);
-  console.log('Set Background To: ' + bgcolorp.value);
   bgcolor.value = bgcolorp.value + '';
+  simple.style.backgroundColor = bgcolor.value + '';
+  console.log('Set Background To: ' + bgcolorp.value);
 };
 SetFGC = function() {
   fgcol = hexu(fgcolorp.value);
-  console.log('Set Foreground To: ' + fgcolorp.value);
   fgcolor.value = fgcolorp.value + '';
+  simple.style.color = fgcolor.value + '';
+  console.log('Set Foreground To: ' + fgcolorp.value);
 };
 ResetBG = function() {
   bgcol = color(0, 0, 0);
   bgcolor.value = hexv(bgcol);
   bgcolorp.value = bgcolor.value + '';
+  simple.style.backgroundColor = bgcolor.value + '';
   console.log('Reset Background To: ' + bgcolor.value);
 };
 ResetFG = function() {
   fgcol = color(0, 255, 0);
   fgcolor.value = hexv(fgcol);
   fgcolorp.value = fgcolor.value + '';
+  simple.style.color = fgcolor.value + '';
   console.log('Reset Foreground To: ' + fgcolor.value);
 };
 SetCol = function() {
@@ -497,6 +503,8 @@ SetCol = function() {
   fgcol = hexu(fgcolor.value);
   bgcolorp.value = bgcolor.value + '';
   fgcolorp.value = fgcolor.value + '';
+  simple.style.backgroundColor = bgcolor.value + '';
+  simple.style.color = fgcolor.value + '';
   console.log('Set Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
 };
 ResetCol = function() {
@@ -506,6 +514,8 @@ ResetCol = function() {
   fgcolor.value = hexv(fgcol);
   bgcolorp.value = bgcolor.value + '';
   fgcolorp.value = fgcolor.value + '';
+  simple.style.backgroundColor = bgcolor.value + '';
+  simple.style.color = fgcolor.value + '';
   console.log('Reset Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
 };
 Stop = function() {
