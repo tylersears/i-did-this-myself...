@@ -29,7 +29,7 @@
 .span {
   font-family: Arial;
   font-size: 20px;
-  line-height: 20px;
+  line-height: 18px;
 }
 .pree {
   line-height: 20px;
@@ -41,7 +41,7 @@
   font-size: 40px;
   font-family: Arial;
   display: inline-block;
-  line-height: 40px;
+  line-height: 37px;
 }
 #logd {
   position: absolute;
