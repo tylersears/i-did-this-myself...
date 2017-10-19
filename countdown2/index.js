@@ -234,13 +234,13 @@ drawe = function() {
   text(dateg(dur), 140, 140);
   text('Current Time:', 10, 200);
   text(date.toISOString(), 140, 200);
-  text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), width * 0.8, 120);
   text('Degrees:', 10, 220);
   text(nr(tf1 * 180 - 90), 140, 220);
   text('Tangent:', 10, 240);
   text(nr(tan(radians(tfm * 180 - 90))), 140, 240);
   text('Hy. Arctan:', 10, 260);
   text(nr(Math.atanh(tfm * 2 - 1)), 140, 260);
+  text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), 480, 120);
   if (tf1 >= 0) {
       rect(0, 300, floor(tf1 * width), 30);
   } else {
@@ -256,6 +256,25 @@ drawe = function() {
   fill(lerpColor(bgcol, fgcol, 0.06));
   textSize(15);
   text('Please press the button labled Button!', 10, 280);
+  //seperator
+  head1.innerHTML = dateg(tl);
+  head2.innerHTML = perc(tf);
+  sele1.innerHTML = dateg(date.getTime() - from.getTime());
+  sele2.innerHTML = from.toISOString();
+  sele3.innerHTML = to.toISOString();
+  sele4.innerHTML = dateg(dur);
+  sele5.innerHTML = date.toISOString();
+  sele6.innerHTML = nr(tf1 * 180 - 90);
+  sele7.innerHTML = nr(tan(radians(tfm * 180 - 90)));
+  sele8.innerHTML = nr(Math.atanh(tfm * 2 - 1));
+  logaa.innerHTML = 'Logarithm:<br>' + modf(ntf) + '<br>' + modf2(ntf) + '<br>' + modf3(ntf) + '<br>' + modf4(ntf) + '<br>' + modf5(ntf) + '<br>' + modf6(ntf);
+  perc1.innerHTML = perc(tf);
+  perc1a.innerHTML = floor(tf * width) + '/' + width;
+  perc2.innerHTML = perc(tf2);
+  perc2a.innerHTML = floor(tf2 * width) + '/' + width;
+  perc2b.innerHTML = floor(tf * width) * width + floor(tf2 * width) + '/' + sq(width);
+  prog1.value = tf1;
+  prog2.value = tf2;
 };
 SetStart = function() {
   try {
