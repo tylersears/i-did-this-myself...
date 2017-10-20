@@ -248,11 +248,11 @@ drawe = function() {
   }
   rect(0, 350, tf2 * width, 30);
   textSize(20);
-  text(perc(tf), 0, 327);
+  text(perc(tf1), 0, 327);
   text(perc(tf2), 0, 377);
-  text(floor(tf * width) + '/' + width, 120, 327);
+  text(floor(tf1 * width) + '/' + width, 120, 327);
   text(floor(tf2 * width) + '/' + width, 120, 377);
-  text(floor(tf * width) * width + floor(tf2 * width) + '/' + sq(width), 220, 377);
+  text(floor(tf1 * width) * width + floor(tf2 * width) + '/' + sq(width), 220, 377);
   fill(lerpColor(bgcol, fgcol, 0.06));
   textSize(15);
   text('Please press the button labled Button!', 10, 280);
