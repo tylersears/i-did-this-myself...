@@ -10,9 +10,9 @@ zwsp2 = ']';
 for (i = 0; i < 31; i ++) {
   zwsp += '&#8203;';
 }
-for (i = 0; i < 32; i ++) {
+for (i = 0; i < 64; i ++) {
   zwsp2 += zwsp;
 }
-zwsp2 += '[ (inf (actually 1024))'
+zwsp2 += '[ (inf (actually 2048))'
 document.getElementById('zw').innerHTML = zwsp2;
 }
