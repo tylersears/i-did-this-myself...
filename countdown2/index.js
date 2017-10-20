@@ -1,10 +1,10 @@
 var width, height;
-var zf, zfm, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
+var zf, zfm, zff, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
 var date, dl, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
-var Setf, Reset, Current, RevSelect, UpdateSelect;
+var Setf, Reset, Current, UpdDate, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var SwitchTab = function(event, tabv) {
@@ -37,6 +37,22 @@ zfm = function(val) {
     return '00' + val;
   } else if (val < 100) {
     return '0' + val;
+  }
+  return val;
+};
+zff = function(val) {
+  if (val < 10) {
+    val = '00000' + val;
+  } else if (val < 100) {
+    val = '0000' + val;
+  } else if (val < 1000) {
+    val = '000' + val;
+  } else if (val < 10000) {
+    val = '00' + val;
+  } else if (val < 100000) {
+    val = '0' + val;
+  } else if (val < 1000000) {
+    val = '' + val;
   }
   return val;
 };
@@ -180,6 +196,10 @@ dl = {
   's7t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
   's8f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
   's8t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
+  'muf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), 0, 0),
+  'mut': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()+1, 0, 0),
+  'hf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 0, 0, 0),
+  'ht': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()+1, 0, 0, 0),
   'df': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0),
   'dt': new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0, 0),
   'wf': new Date(),
@@ -250,9 +270,9 @@ drawe = function() {
   textSize(20);
   text(perc(tf1), 0, 327);
   text(perc(tf2), 0, 377);
-  text(floor(tf1 * width) + '/' + width, 120, 327);
-  text(floor(tf2 * width) + '/' + width, 120, 377);
-  text(floor(tf1 * width) * width + floor(tf2 * width) + '/' + sq(width), 220, 377);
+  text(zfm(floor(tf1 * width)) + '/' + width, 120, 327);
+  text(zfm(floor(tf2 * width)) + '/' + width, 120, 377);
+  text(zff(floor(tf1 * width) * width + floor(tf2 * width)) + '/' + sq(width), 220, 377);
   fill(lerpColor(bgcol, fgcol, 0.06));
   textSize(15);
   text('Please press the button labled Button!', 10, 280);
@@ -269,12 +289,13 @@ drawe = function() {
   sele8.innerHTML = nr(Math.atanh(tfm * 2 - 1));
   logaa.innerHTML = 'Logarithm:<br>' + modf(ntf) + '<br>' + modf2(ntf) + '<br>' + modf3(ntf) + '<br>' + modf4(ntf) + '<br>' + modf5(ntf) + '<br>' + modf6(ntf);
   perc1.innerHTML = perc(tf);
-  perc1a.innerHTML = floor(tf * width) + '/' + width;
+  perc1a.innerHTML = zfm(floor(tf * width)) + '/' + width;
   perc2.innerHTML = perc(tf2);
-  perc2a.innerHTML = floor(tf2 * width) + '/' + width;
-  perc2b.innerHTML = floor(tf * width) * width + floor(tf2 * width) + '/' + sq(width);
+  perc2a.innerHTML = zfm(floor(tf2 * width)) + '/' + width;
+  perc2b.innerHTML = zff(floor(tf * width) * width + floor(tf2 * width)) + '/' + sq(width);
   prog1.value = tf1;
   prog2.value = tf2;
+  UpdDate();
 };
 SetStart = function() {
   try {
@@ -334,6 +355,45 @@ Current = function() {
   dur = to.getTime() - from.getTime();
   console.log('Set Start To: ' + from.toISOString());
 };
+UpdDate = function() {
+  dl = {
+    'sf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
+    'st': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
+    's1f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
+    's1t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
+    's3f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
+    's3t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
+    's4f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
+    's4t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
+    's5f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
+    's5t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
+    's6f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
+    's6t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
+    's7f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
+    's7t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
+    's8f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
+    's8t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
+    'muf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), 0, 0),
+    'mut': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()+1, 0, 0),
+    'hf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 0, 0, 0),
+    'ht': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()+1, 0, 0, 0),
+    'df': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0),
+    'dt': new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0, 0),
+    'wf': new Date(),
+    'wt': new Date(),
+    'mf': new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0),
+    'mt': new Date(date.getFullYear(), date.getMonth()+1, 1, 0, 0, 0, 0),
+    'yf': new Date(date.getFullYear(), 0, 1, 0, 0, 0, 0),
+    'yt': new Date(date.getFullYear()+1, 0, 1, 0, 0, 04, 0),
+    'def': new Date(floor(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
+    'det': new Date(ceil(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
+    'cf': new Date(floor(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
+    'ct': new Date(ceil(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
+    'mlf': new Date(floor(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
+    'mlt': new Date(ceil(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
+    'net': new Date('2024-04-08T17:59:17.000Z')
+  };
+};
 RevSelect = function() {
   if ((from.toISOString() == dl.sf.toISOString()) && (to.toISOString() == dl.st.toISOString())) {
     opts.value = 'school';
@@ -351,6 +411,10 @@ RevSelect = function() {
     opts.value = '7th';
   } else if ((from.toISOString() == dl.s8f.toISOString()) && (to.toISOString() == dl.s8t.toISOString())) {
     opts.value = '8th';
+  } else if ((from.toISOString() == dl.muf.toISOString()) && (to.toISOString() == dl.mut.toISOString())) {
+    opts.value = 'minute';
+  } else if ((from.toISOString() == dl.hf.toISOString()) && (to.toISOString() == dl.ht.toISOString())) {
+    opts.value = 'hour';
   } else if ((from.toISOString() == dl.df.toISOString()) && (to.toISOString() == dl.dt.toISOString())) {
     opts.value = 'day';
   } else if ((from.toISOString() == dl.wf.toISOString()) && (to.toISOString() == dl.wt.toISOString())) {
@@ -413,6 +477,16 @@ UpdateSelect = function() {
       from = new Date(dl.s8f);
       to = new Date(dl.s8t);
       console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (3rd Block)');
+      break;
+    case 'minute':
+      from = new Date(dl.muf);
+      to = new Date(dl.mut);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Minute)');
+      break;
+    case 'hour':
+      from = new Date(dl.hf);
+      to = new Date(dl.ht);
+      console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString() + ' (Hour)');
       break;
     case 'day':
       from = new Date(dl.df);
