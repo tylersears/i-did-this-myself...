@@ -1,6 +1,7 @@
 clik = [];
 var l10s;
 var l10sp;
+var l10m = 0;
 function AddClick() {
   clik.push(new Date());
 }
@@ -18,8 +19,10 @@ function Loop() {
   }
   l10s = clik.length;
   l10sp = l10s / 10;
-  clicks10s.innerHTML = l10s + '';
-  clicks10ps.innerHTML = l10sp + '';
+  l10m = Math.max(l10sp, l10m);
+  clicks10s.innerHTML = 'Clicks in last 10s: ' + l10s;
+  clicks10ps.innerHTML = 'Clicks per second: ' + l10sp;
+  clicks10m.innerHTML = 'Max Clicks per second: ' + l10m;
 }
 Loop();
 setInterval(Loop, 1000);
