@@ -8,6 +8,9 @@ var Setf, Reset, Current, UpdDate, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var PRI, simplede, simpled;
+Math.atanh = Math.atanh || function(x) {
+  return Math.log((1+x)/(1-x)) / 2;
+};
 widthe = 600;
 heighte = 400;
 var SwitchTab = function(event, tabv) {
