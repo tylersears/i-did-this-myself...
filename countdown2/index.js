@@ -1,4 +1,4 @@
-var width, height;
+var widthe, heighte;
 var zf, zfm, zff, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
 var date, dl, from, to, dur;
@@ -7,6 +7,9 @@ var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, UpdDate, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
+var PRI, simplede, simpled;
+widthe = 600;
+heighte = 400;
 var SwitchTab = function(event, tabv) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -20,12 +23,7 @@ var SwitchTab = function(event, tabv) {
   document.getElementById(tabv).style.display = "block";
   event.currentTarget.className += " active";
 };
-var sketchProc = function(processingInstance) {
-  with (processingInstance) {
-//begin processingjs
-width = 600;
-height = 400;
-size(width, height, P2D);
+{
 zf = function(val) {
   if (val < 10) {
     return '0' + val;
@@ -57,7 +55,7 @@ zff = function(val) {
   return val;
 };
 datearr = function(val) {
-  return [floor(val / 86400000), floor(val / 3600000) % 24, floor(val / 60000) % 60, floor(val / 1000) % 60, val % 1000];
+  return [Math.floor(val / 86400000), Math.floor(val / 3600000) % 24, Math.floor(val / 60000) % 60, Math.floor(val / 1000) % 60, val % 1000];
 };
 datestr = function(val) {
   return zfm(val[0]) + ':' + zf(val[1]) + ':' + zf(val[2]) + ':' + zf(val[3]) + '.' + zfm(val[4]);
@@ -87,7 +85,7 @@ perc = function(val) {
   } else if (val < 1000000) {
     val = '' + val;
   } else {
-    return floor(val / 1000000) + perc((val / 1000000) % 1);
+    return Math.floor(val / 1000000) + perc((val / 1000000) % 1);
   }
   return val[0] + val[1] + '.' + val[2] + val[3] + val[4] + val[5] + '%';
 };
@@ -112,7 +110,7 @@ nr = function(val) {
   } else if (val < 1000000) {
     val = '' + val;
   } else {
-    return floor(val / 1000000) + nr((val / 1000000) % 1);
+    return Math.floor(val / 1000000) + nr((val / 1000000) % 1);
   }
   return '.' + val[0] + val[1] + val[2] + val[3] + val[4] + val[5];
 };
@@ -120,9 +118,9 @@ mr = function(v, df) {
   if (v < 0) {
       return '-' + mr(-v);
   }
-  v = floor(v * 1000000);
+  v = Math.floor(v * 1000000);
   if (v > 1000000) {
-      return floor(v / 1000000) + mr((v / 1000000) % 1, 1);
+      return Math.floor(v / 1000000) + mr((v / 1000000) % 1, 1);
   } else if (v < 10) {
       v = '00000' + v;
   } else if (v < 100) {
@@ -143,41 +141,46 @@ mr = function(v, df) {
   return '0.' + v[0] + v[1] + v[2] + v[3] + v[4] + v[5];
 };
 hexu = function(val) {
-  return color(parseInt(val[1] + val[2], 16), parseInt(val[3] + val[4], 16), parseInt(val[5] + val[6], 16));
+  return PRI.color(parseInt(val[1] + val[2], 16), parseInt(val[3] + val[4], 16), parseInt(val[5] + val[6], 16));
 };
 hexv = function(col) {
-  return '#' + zf(red(col).toString(16)) + zf(green(col).toString(16)) + zf(blue(col).toString(16));
+  return '#' + zf(PRI.red(col).toString(16)) + zf(PRI.green(col).toString(16)) + zf(PRI.blue(col).toString(16));
 };
 modf = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return mr(v);
 };
 modf2 = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return modf(v);
 };
 modf3 = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return modf2(v);
 };
 modf4 = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return modf3(v);
 };
 modf5 = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return modf4(v);
 };
 modf6 = function(tif) {
   tif = tif % 1;
-  v = -log(1-tif) / log(2);
+  v = -Math.log(1-tif) / Math.log(2);
   return modf5(v);
 };
+}
+var sketchProc = function(processingInstance) {
+  with (processingInstance) {
+//begin processingjs
+size(widthe, heighte, P2D);
 date = new Date();
 dl = {
   'sf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
@@ -276,26 +279,6 @@ drawe = function() {
   fill(lerpColor(bgcol, fgcol, 0.06));
   textSize(15);
   text('Please press the button labled Button!', 10, 280);
-  //seperator
-  head1.innerHTML = dateg(tl);
-  head2.innerHTML = perc(tf);
-  sele1.innerHTML = dateg(date.getTime() - from.getTime());
-  sele2.innerHTML = dateg(dur);
-  sele3.innerHTML = from.toISOString();
-  sele4.innerHTML = to.toISOString();
-  sele5.innerHTML = date.toISOString();
-  sele6.innerHTML = nr(tf1 * 180 - 90);
-  sele7.innerHTML = nr(tan(radians(tfm * 180 - 90)));
-  sele8.innerHTML = nr(Math.atanh(tfm * 2 - 1));
-  logaa.innerHTML = 'Logarithm:<br>' + modf(ntf) + '<br>' + modf2(ntf) + '<br>' + modf3(ntf) + '<br>' + modf4(ntf) + '<br>' + modf5(ntf) + '<br>' + modf6(ntf);
-  perc1.innerHTML = perc(tf);
-  perc1a.innerHTML = zfm(floor(tf * width)) + '/' + width;
-  perc2.innerHTML = perc(tf2);
-  perc2a.innerHTML = zfm(floor(tf2 * width)) + '/' + width;
-  perc2b.innerHTML = zff(floor(tf * width) * width + floor(tf2 * width)) + '/' + sq(width);
-  prog1.value = tf1;
-  prog2.value = tf2;
-  UpdDate();
 };
 SetStart = function() {
   try {
@@ -607,5 +590,39 @@ Button = function() {};
 };
 var canvas = document.getElementById('mycanvas'); 
 var processingInstance = new Processing(canvas, sketchProc);
+PRI = processingInstance;
 bgcolorp.addEventListener('change', SetBGC, false);
 fgcolorp.addEventListener('change', SetFGC, false);
+simplede = function() {
+  date = new Date();
+  tl = to.getTime() - date.getTime();
+  tf = 1 - (tl / dur);
+  tf1 = (1 - (tl / dur)) % 1;
+  tfm = tf - Math.floor(tf);
+  ntf = 1 - (tl / dur);
+  tf2 = (tf * widthe - Math.floor(tf * widthe));
+  head1.innerHTML = dateg(tl);
+  head2.innerHTML = perc(tf);
+  sele1.innerHTML = dateg(date.getTime() - from.getTime());
+  sele2.innerHTML = dateg(dur);
+  sele3.innerHTML = from.toISOString();
+  sele4.innerHTML = to.toISOString();
+  sele5.innerHTML = date.toISOString();
+  sele6.innerHTML = nr(tf1 * 180 - 90);
+  sele7.innerHTML = nr(Math.tan((tfm * 180 - 90) / 360 * 3.1415926535 * 2));
+  sele8.innerHTML = nr(Math.atanh(tfm * 2 - 1));
+  logaa.innerHTML = 'Logarithm:<br>' + modf(ntf) + '<br>' + modf2(ntf) + '<br>' + modf3(ntf) + '<br>' + modf4(ntf) + '<br>' + modf5(ntf) + '<br>' + modf6(ntf);
+  perc1.innerHTML = perc(tf);
+  perc1a.innerHTML = zfm(Math.floor(tf * widthe)) + '/' + widthe;
+  perc2.innerHTML = perc(tf2);
+  perc2a.innerHTML = zfm(Math.floor(tf2 * widthe)) + '/' + widthe;
+  perc2b.innerHTML = zff(Math.floor(tf * widthe) * widthe + Math.floor(tf2 * widthe)) + '/' + (widthe * widthe);
+  prog1.value = tf1;
+  prog2.value = tf2;
+};
+simpled = function() {
+  try {
+    simplede();
+  } catch (e) {}
+};
+setInterval(simpled, 0);
