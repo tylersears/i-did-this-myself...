@@ -629,3 +629,22 @@ simpled = function() {
   } catch (e) {}
 };
 setInterval(simpled, 0);
+onload = function() {
+  startval.value = localStorage.getItem('startvall');
+  endval.value = localStorage.getItem('startvall');
+  bgcolor.value = localStorage.getItem('bgcolorl');
+  fgcolor.value = localStorage.getItem('fgcolorl');
+  if (startval.value == '' || startval.value == '') {
+    Reset();
+  }
+  if (bgcolor.value == '' || fgcolor.value == '') {
+    ResetCol();
+  }
+};
+onbeforeunload = function() {
+  localStorage.setItem('startvall', startval.value);
+  localStorage.setItem('endvall', endval.value);
+  localStorage.setItem('bgcolorl', bgcolor.value);
+  localStorage.setItem('fgcolorl', fgcolor.value);
+  return null;
+};
