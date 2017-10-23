@@ -637,9 +637,13 @@ onload = function() {
   console.log('e ' + startval.value);
   if (startval.value == '' || endval.value == '') {
     Reset();
+  } else {
+    Setf();
   }
   if (bgcolor.value == '' || fgcolor.value == '') {
     ResetCol();
+  } else {
+    SetCol();
   }
 };
 onunload = function() {
