@@ -69,7 +69,7 @@ draw = function() {
   }
 };
 try {
-  document.write(document.cookie);
+  cookie.innerHTML = document.cookie;
   a = document.cookie.split('; ');
   if (a.length > 1) {
   l10m = parseInt(a[0])/10;
