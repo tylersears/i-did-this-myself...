@@ -70,8 +70,6 @@ function getCookie(cname) {
     }
     return "";
 }
-Loop();
-setInterval(Loop, 10);
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
 //begin processingjs
@@ -93,10 +91,13 @@ draw = function() {
   }
 };
 try {
-  cookie.innerHTML = document.cookie;
+  //cookie.innerHTML = document.cookie;
   a = [getCookie('l10m'), getCookie('l1m')];
+  console.log(a);
   l10m = parseInt(a[0])/10;
   l1m = parseInt(a[1]);
 } catch (e) {}
+Loop();
+setInterval(Loop, 10);
 var canvas = document.getElementById("mycanvas"); 
 var processingInstance = new Processing(canvas, sketchProc);
