@@ -40,6 +40,11 @@ function Loop() {
   clicks1s.innerHTML = 'Clicks in last 1s: ' + l1s;
   clicks1ps.innerHTML = 'Clicks per second: ' + l1sp;
   clicks1m.innerHTML = 'Max Clicks per second: ' + l1m;
+  document.cookie = l10m + '; ' + l1m;
+}
+function ClearCookie() {
+  l10m = 0;
+  l1m = 0;
 }
 Loop();
 setInterval(Loop, 10);
@@ -63,5 +68,12 @@ draw = function() {
 //end processingjs
   }
 };
+try {
+  console.log(document.cookie);
+  a = document.cookie.split('; ');
+  if (a.length > 1) {
+  l10m = parseInt(a[0])/10;
+  l1m = parseInt(a[1]);}
+} catch (e) {}
 var canvas = document.getElementById("mycanvas"); 
 var processingInstance = new Processing(canvas, sketchProc);
