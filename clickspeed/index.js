@@ -48,6 +48,10 @@ function ClearCookie() {
   l10m = 0;
   l1m = 0;
   clik = [];
+  l10s = 0;
+  l10sp = 0;
+  l1s = 0;
+  l1sp = 0;
   setCookie('l10m', 0, 365);
   setCookie('l1m', 0, 365);
 }
