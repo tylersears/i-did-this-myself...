@@ -47,6 +47,7 @@ function Loop() {
 function ClearCookie() {
   l10m = 0;
   l1m = 0;
+  document.cookie = 'l10m=0; l1m=0';
 }
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
