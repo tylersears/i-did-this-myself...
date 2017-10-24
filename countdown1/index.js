@@ -350,3 +350,27 @@ var canvas = document.getElementById('mycanvas');
 var processingInstance = new Processing(canvas, sketchProc);
 bgcolorp.addEventListener('change', SetBGC, false);
 fgcolorp.addEventListener('change', SetFGC, false);
+onloade = function() {
+  startval.value = localStorage.getItem('startval1');
+  endval.value = localStorage.getItem('endval1');
+  bgcolor.value = localStorage.getItem('bgcolor1');
+  fgcolor.value = localStorage.getItem('fgcolor1');
+  if (startval.value == '' || endval.value == '') {
+    Reset();
+  } else {
+    Setf();
+  }
+  if (bgcolor.value == '' || fgcolor.value == '') {
+    ResetCol();
+  } else {
+    SetCol();
+  }
+};
+onload = onloade;
+onunload = function() {
+  localStorage.setItem('startval1', startval.value);
+  localStorage.setItem('endval1', endval.value);
+  localStorage.setItem('bgcolor1', bgcolor.value);
+  localStorage.setItem('fgcolor1', fgcolor.value);
+  return null;
+};
