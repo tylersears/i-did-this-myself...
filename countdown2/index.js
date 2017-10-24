@@ -196,15 +196,15 @@ SetStart = function() {
     startval.value = from.toISOString();
   }
   dur = to.getTime() - from.getTime();
-  console.log('Set Start To: ' + from.toISOString());
   RevSelect();
+  console.log('Set Start To: ' + from.toISOString());
 };
 ResetStart = function() {
   from = new Date(dl.sf);
   dur = to.getTime() - from.getTime();
   startval.value = from.toISOString();
-  console.log('Reset Start To: ' + from.toISOString());
   RevSelect();
+  console.log('Reset Start To: ' + from.toISOString());
 };
 SetEnd = function() {
   try {
@@ -214,22 +214,22 @@ SetEnd = function() {
     endval.value = from.toISOString();
   }
   dur = to.getTime() - from.getTime();
-  console.log('Set End To: ' + to.toISOString());
   RevSelect();
+  console.log('Set End To: ' + to.toISOString());
 };
 ResetEnd = function() {
   to = new Date(dl.st);
   dur = to.getTime() - from.getTime();
   endval.value = to.toISOString();
-  console.log('Reset End To: ' + to.toISOString());
   RevSelect();
+  console.log('Reset End To: ' + to.toISOString());
 };
 Setf = function() {
   from = new Date(startval.value);
   to = new Date(endval.value);
   dur = to.getTime() - from.getTime();
-  console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
   RevSelect();
+  console.log('Set Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Reset = function() {
   from = new Date(dl.sf);
@@ -237,13 +237,14 @@ Reset = function() {
   startval.value = from.toISOString();
   endval.value = to.toISOString();
   dur = to - from;
-  console.log('Reset Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
   RevSelect();
+  console.log('Reset Start To: ' + from.toISOString() + ', End To: ' + to.toISOString());
 };
 Current = function() {
   startval.value = date.toISOString();
   from = new Date(startval.value);
   dur = to.getTime() - from.getTime();
+  RevSelect();
   console.log('Set Start To: ' + from.toISOString());
 };
 UpdDate = function() {
