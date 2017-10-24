@@ -61,7 +61,6 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -74,7 +73,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return "";
+    return 0;
 }
 var sketchProc = function(processingInstance) {
   with (processingInstance) {
@@ -88,9 +87,9 @@ draw = function() {
   background(0);
   set(0, 0, getsel);
   stroke(0, 0, 255);
-  point(599, 200-(l10sp*10));
+  point(599, 200-(l10sp*5));
   stroke(255, 0, 0);
-  point(599, 200-(l1sp*10));
+  point(599, 200-(l1sp*5));
   getsel = get(1, 0, 599, 200);
 };
 //end processingjs
