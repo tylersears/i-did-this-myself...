@@ -1,13 +1,13 @@
 var widthe, heighte;
 var zf, zfm, zff, datearr, datestr, dateg, perc, nr, mr, hexu, hexv;
 var modf, modf2, modf3, modf4, modf5, modf6;
-var date, dl, from, to, dur;
-var bgcol, fgcol, tl, tf, ntf, tf2;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, UpdDate, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
 var Stop, Freeze, Button;
 var PRI, simplede, simpled;
+var date, dl, from, to, dur;
+var bgcol, fgcol, tl, tf, ntf, tf2;
 Math.atanh = Math.atanh || function(x) {
   return Math.log((1+x)/(1-x)) / 2;
 };
@@ -179,110 +179,6 @@ modf6 = function(tif) {
   v = -Math.log(1-tif) / Math.log(2);
   return modf5(v);
 };
-}
-var sketchProc = function(processingInstance) {
-  with (processingInstance) {
-//begin processingjs
-size(widthe, heighte, P2D);
-date = new Date();
-dl = {
-  'sf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
-  'st': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
-  's1f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0, 0),
-  's1t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
-  's3f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 13, 0, 0),
-  's3t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
-  's4f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 50, 0, 0),
-  's4t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
-  's5f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45, 0, 0),
-  's5t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
-  's6f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 10, 0, 0),
-  's6t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
-  's7f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 50, 0, 0),
-  's7t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
-  's8f': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 45, 0, 0),
-  's8t': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 23, sd, (sd - Math.floor(sd)) * 1000),
-  'muf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), 0, 0),
-  'mut': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()+1, 0, 0),
-  'hf': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 0, 0, 0),
-  'ht': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()+1, 0, 0, 0),
-  'df': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0),
-  'dt': new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0, 0),
-  'wf': new Date(),
-  'wt': new Date(),
-  'mf': new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0),
-  'mt': new Date(date.getFullYear(), date.getMonth()+1, 1, 0, 0, 0, 0),
-  'yf': new Date(date.getFullYear(), 0, 1, 0, 0, 0, 0),
-  'yt': new Date(date.getFullYear()+1, 0, 1, 0, 0, 04, 0),
-  'def': new Date(floor(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
-  'det': new Date(ceil(date.getFullYear() / 10) * 10, 0, 1, 0, 0, 0, 0),
-  'cf': new Date(floor(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
-  'ct': new Date(ceil(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
-  'mlf': new Date(floor(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
-  'mlt': new Date(ceil(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
-  'net': new Date('2024-04-08T17:59:17.000Z')
-};
-from = new Date(dl.sf);
-to = new Date(dl.st);
-dur = to.getTime() - from.getTime();
-bgcol = color(0, 0, 0);
-fgcol = color(0, 255, 0);
-draw = function() {
-  try {
-    drawe();
-  } catch (e) {}
-};
-drawe = function() {
-  date = new Date();
-  tl = to.getTime() - date.getTime();
-  tf = 1 - (tl / dur);
-  tf1 = (1 - (tl / dur)) % 1;
-  tfm = tf - floor(tf);
-  ntf = 1 - (tl / dur);
-  tf2 = (tf * width - floor(tf * width));
-  background(bgcol);
-  fill(fgcol);
-  noStroke();
-  textAlign(CENTER, CENTER);
-  textSize(40);
-  text('Time Left:', width / 2, 20);
-  text(dateg(tl), width / 2, 60);
-  text(perc(tf), width / 2, 100);
-  textAlign(LEFT, TOP);
-  textSize(20);
-  text('Time Passed:', 10, 120);
-  text(dateg(date.getTime() - from.getTime()), 140, 120);
-  text('From:', 10, 160);
-  try {text(from.toISOString(), 140, 160);} catch (e) {}
-  text('To:', 10, 180);
-  try {text(to.toISOString(), 140, 180);} catch (e) {}
-  text('Duration:', 10, 140);
-  text(dateg(dur), 140, 140);
-  text('Current Time:', 10, 200);
-  text(date.toISOString(), 140, 200);
-  text('Degrees:', 10, 220);
-  text(nr(tf1 * 180 - 90), 140, 220);
-  text('Tangent:', 10, 240);
-  text(nr(tan(radians(tfm * 180 - 90))), 140, 240);
-  text('Hy. Arctan:', 10, 260);
-  text(nr(Math.atanh(tfm * 2 - 1)), 140, 260);
-  text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), 480, 120);
-  if (tf1 >= 0) {
-      rect(0, 300, floor(tf1 * width), 30);
-  } else {
-      rect(width-floor(-tf1 * width), 300, floor(-tf1 * width), 30);
-  }
-  rect(0, 350, tf2 * width, 30);
-  textSize(20);
-  text(perc(tf1), 0, 327);
-  text(perc(tf2), 0, 377);
-  text(zfm(floor(tf1 * width)) + '/' + width, 120, 327);
-  text(zfm(floor(tf2 * width)) + '/' + width, 120, 377);
-  text(zff(floor(tf1 * width) * width + floor(tf2 * width)) + '/' + sq(width), 220, 377);
-  fill(lerpColor(bgcol, fgcol, 0.06));
-  textSize(15);
-  text('Please press the button labled Button!', 10, 280);
-};
 SetStart = function() {
   try {
     frome = new Date(startval.value);
@@ -313,7 +209,7 @@ SetEnd = function() {
   RevSelect();
 };
 ResetEnd = function() {
-  to = new Date(td[0], td[1], td[2], td[3], td[4], td[5], td[6]);
+  to = new Date(dl.st);
   dur = to.getTime() - from.getTime();
   endval.value = to.toISOString();
   console.log('Reset End To: ' + to.toISOString());
@@ -545,14 +441,14 @@ SetFGC = function() {
   console.log('Set Foreground To: ' + fgcolorp.value);
 };
 ResetBG = function() {
-  bgcol = color(0, 0, 0);
+  bgcol = PRI.color(0, 0, 0);
   bgcolor.value = hexv(bgcol);
   bgcolorp.value = bgcolor.value + '';
   simple.style.backgroundColor = bgcolor.value + '';
   console.log('Reset Background To: ' + bgcolor.value);
 };
 ResetFG = function() {
-  fgcol = color(0, 255, 0);
+  fgcol = PRI.color(0, 255, 0);
   fgcolor.value = hexv(fgcol);
   fgcolorp.value = fgcolor.value + '';
   simple.style.color = fgcolor.value + '';
@@ -568,8 +464,8 @@ SetCol = function() {
   console.log('Set Background To: ' + bgcolor.value + ', Foreground To: ' + fgcolor.value);
 };
 ResetCol = function() {
-  bgcol = color(0, 0, 0);
-  fgcol = color(0, 255, 0);
+  bgcol = PRI.color(0, 0, 0);
+  fgcol = PRI.color(0, 255, 0);
   bgcolor.value = hexv(bgcol);
   fgcolor.value = hexv(fgcol);
   bgcolorp.value = bgcolor.value + '';
@@ -583,11 +479,77 @@ Stop = function() {
   console.log('Stopped Drawing');
 };
 Freeze = function() {
-  //bgcol = color(0, 0, 255);
-  //fgcol = color(0, 255, 255);
   for (var i = 0; i < 2000000000; i ++) {}
 };
 Button = function() {};
+}
+var sketchProc = function(processingInstance) {
+  with (processingInstance) {
+//begin processingjs
+size(widthe, heighte, P2D);
+date = new Date();
+UpdDate();
+from = new Date(dl.sf);
+to = new Date(dl.st);
+dur = to.getTime() - from.getTime();
+bgcol = color(0, 0, 0);
+fgcol = color(0, 255, 0);
+draw = function() {
+  try {
+    drawe();
+  } catch (e) {}
+};
+drawe = function() {
+  date = new Date();
+  tl = to.getTime() - date.getTime();
+  tf = 1 - (tl / dur);
+  tf1 = (1 - (tl / dur)) % 1;
+  tfm = tf - floor(tf);
+  ntf = 1 - (tl / dur);
+  tf2 = (tf * width - floor(tf * width));
+  background(bgcol);
+  fill(fgcol);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  text('Time Left:', width / 2, 20);
+  text(dateg(tl), width / 2, 60);
+  text(perc(tf), width / 2, 100);
+  textAlign(LEFT, TOP);
+  textSize(20);
+  text('Time Passed:', 10, 120);
+  text(dateg(date.getTime() - from.getTime()), 140, 120);
+  text('From:', 10, 160);
+  try {text(from.toISOString(), 140, 160);} catch (e) {}
+  text('To:', 10, 180);
+  try {text(to.toISOString(), 140, 180);} catch (e) {}
+  text('Duration:', 10, 140);
+  text(dateg(dur), 140, 140);
+  text('Current Time:', 10, 200);
+  text(date.toISOString(), 140, 200);
+  text('Degrees:', 10, 220);
+  text(nr(tf1 * 180 - 90), 140, 220);
+  text('Tangent:', 10, 240);
+  text(nr(tan(radians(tfm * 180 - 90))), 140, 240);
+  text('Hy. Arctan:', 10, 260);
+  text(nr(Math.atanh(tfm * 2 - 1)), 140, 260);
+  text('Logarithm:\n' + modf(ntf) + '\n' + modf2(ntf) + '\n' + modf3(ntf) + '\n' + modf4(ntf) + '\n' + modf5(ntf) + '\n' + modf6(ntf), 480, 120);
+  if (tf1 >= 0) {
+      rect(0, 300, floor(tf1 * width), 30);
+  } else {
+      rect(width-floor(-tf1 * width), 300, floor(-tf1 * width), 30);
+  }
+  rect(0, 350, tf2 * width, 30);
+  textSize(20);
+  text(perc(tf1), 0, 327);
+  text(perc(tf2), 0, 377);
+  text(zfm(floor(tf1 * width)) + '/' + width, 120, 327);
+  text(zfm(floor(tf2 * width)) + '/' + width, 120, 377);
+  text(zff(floor(tf1 * width) * width + floor(tf2 * width)) + '/' + sq(width), 220, 377);
+  fill(lerpColor(bgcol, fgcol, 0.06));
+  textSize(15);
+  text('Please press the button labled Button!', 10, 280);
+};
 //end processingjs
   }
 };
@@ -630,10 +592,10 @@ simpled = function() {
 };
 setInterval(simpled, 0);
 onloade = function() {
-  startval.value = localStorage.getItem('startvall');
-  endval.value = localStorage.getItem('endvall');
-  bgcolor.value = localStorage.getItem('bgcolorl');
-  fgcolor.value = localStorage.getItem('fgcolorl');
+  startval.value = localStorage.getItem('startval2');
+  endval.value = localStorage.getItem('endval2');
+  bgcolor.value = localStorage.getItem('bgcolor2');
+  fgcolor.value = localStorage.getItem('fgcolor2');
   if (startval.value == '' || endval.value == '') {
     Reset();
   } else {
@@ -647,9 +609,9 @@ onloade = function() {
 };
 onload = onloade;
 onunload = function() {
-  localStorage.setItem('startvall', startval.value);
-  localStorage.setItem('endvall', endval.value);
-  localStorage.setItem('bgcolorl', bgcolor.value);
-  localStorage.setItem('fgcolorl', fgcolor.value);
+  localStorage.setItem('startval2', startval.value);
+  localStorage.setItem('endval2', endval.value);
+  localStorage.setItem('bgcolor2', bgcolor.value);
+  localStorage.setItem('fgcolor2', fgcolor.value);
   return null;
 };
