@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>press Speed</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <span>Click the black object above "Colors:" and keymash as fast as possible.</span><br>
+    <button id = 'clearc' onclick = 'ClearCookie()'>Clear Cookie</button><br>
+    <span id = 'presses10s'></span><br>
+    <span id = 'presses10ps'></span><br>
+    <span id = 'presses10m'></span><br>
+    <span id = 'presses1s'></span><br>
+    <span id = 'presses1ps'></span><br>
+    <span id = 'presses1m'></span><br>
+    <span>If the maximum values are 'NaN' then hit clear cookie.</span><br>
+    <canvas id="mycanvas"></canvas><br>
+    <span>Colors:</span><br>
+    <span><span id = 's1'>--</span> - 1 second average</span><br>
+    <span><span id = 's2'>--</span> - 10 second average</span><br>
+    <span id = 'cookie'>Hello</span>
+    <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
