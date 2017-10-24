@@ -629,12 +629,11 @@ simpled = function() {
   } catch (e) {}
 };
 setInterval(simpled, 0);
-onload = function() {
+onloade = function() {
   startval.value = localStorage.getItem('startvall');
   endval.value = localStorage.getItem('endvall');
   bgcolor.value = localStorage.getItem('bgcolorl');
   fgcolor.value = localStorage.getItem('fgcolorl');
-  console.log('e ' + startval.value);
   if (startval.value == '' || endval.value == '') {
     Reset();
   } else {
@@ -646,6 +645,7 @@ onload = function() {
     SetCol();
   }
 };
+onload = onloade;
 onunload = function() {
   localStorage.setItem('startvall', startval.value);
   localStorage.setItem('endvall', endval.value);
