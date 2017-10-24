@@ -593,6 +593,7 @@ simplede = function() {
   perc2b.innerHTML = zff(Math.floor(tf * widthe) * widthe + Math.floor(tf2 * widthe)) + '/' + (widthe * widthe);
   prog1.value = tf1;
   prog2.value = tf2;
+  UpdDate();
 };
 simpled = function() {
   try {
