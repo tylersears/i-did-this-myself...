@@ -28,12 +28,18 @@ var SwitchTab = function(event, tabv) {
 };
 {
 zf = function(val) {
+  if (val < 0) {
+    return '-' + zfm(-val);
+  }
   if (val < 10) {
     return '0' + val;
   }
   return val;
 };
 zfm = function(val) {
+  if (val < 0) {
+    return '-' + zfm(-val);
+  }
   if (val < 10) {
     return '00' + val;
   } else if (val < 100) {
@@ -42,6 +48,9 @@ zfm = function(val) {
   return val;
 };
 zff = function(val) {
+  if (val < 0) {
+    return '-' + zfm(-val);
+  }
   if (val < 10) {
     val = '00000' + val;
   } else if (val < 100) {
@@ -273,7 +282,7 @@ UpdDate = function() {
     'ct': new Date(Math.ceil(date.getFullYear() / 100) * 100, 0, 1, 0, 0, 0, 0),
     'mlf': new Date(Math.floor(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
     'mlt': new Date(Math.ceil(date.getFullYear() / 1000) * 1000, 0, 1, 0, 0, 0, 0),
-    'net': new Date('2024-04-08T17:59:17.000Z')
+    'net': new Date(nexteclipse)
   };
 };
 RevSelect = function() {
