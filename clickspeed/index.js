@@ -83,6 +83,9 @@ var height = 200;
 size(width, height, P2D);
 background(0);
 var getsel = get(1, 0, 599, 200);
+mousePressed = function() {
+  AddClick();
+};
 draw = function() {
   background(0);
   set(0, 0, getsel);
