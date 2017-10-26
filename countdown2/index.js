@@ -4,7 +4,7 @@ var modf, modf2, modf3, modf4, modf5, modf6;
 var SetStart, ResetStart, SetEnd, ResetEnd;
 var Setf, Reset, Current, UpdDate, RevSelect, UpdateSelect;
 var SetBG, SetFG, SetBGC, SetFGC, ResetBG, ResetFG, SetCol, ResetCol;
-var Stop, Freeze, Button;
+var Stop, Freeze, Mystery, Button;
 var PRI, simplede, simpled;
 var date, dl, from, to, dur;
 var bgcol, fgcol, tl, tf, ntf, tf2;
@@ -490,6 +490,9 @@ Stop = function() {
 };
 Freeze = function() {
   for (var i = 0; i < 2000000000; i ++) {}
+};
+Mystery = function() {
+  idd.innerHTML = '';
 };
 Button = function() {};
 }
